@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MG Concept Store | Her Hediyenin Bir Hikâyesi Var</title>
+<meta name="description" content="Sevdiklerin için özel, sevimli ve unutulmaz hediyeler. MG Concept Store'u keşfet.">
+<style>
+:root {
+  --cream: #faf7f0;
+  --pink: #e8b9b3;
+  --brown: #47352f;
+  --muted: #82756e;
+  --white: #fff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: Arial, Helvetica, sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+.topbar {
+  background: var(--brown);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+header {
+  background: rgba(250,247,240,.97);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid #eee4d9;
+}
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.logo {
+  font-family: Georgia, serif;
+  font-size: 27px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.logo small {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-top: 4px;
+}
+.links { display: flex; gap: 24px; font-size: 13px; }
+.links a:hover { color: #b77870; }
+.cart-button {
+  border: 1px solid #d9c9bc;
+  background: transparent;
+  border-radius: 30px;
+  padding: 10px 15px;
+  color: var(--brown);
+}
+.hero {
+  max-width: 1200px;
+  margin: auto;
+  padding: 55px 24px 70px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 45px;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #a76f68;
+}
+h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(42px, 5.5vw, 70px);
+  line-height: 1.08;
+  font-weight: normal;
+  margin: 20px 0;
+}
+h1 em { color: #bc827a; }
+.hero p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+  max-width: 440px;
+}
+.primary {
+  display: inline-block;
+  background: var(--brown);
+  color: white;
+  border: 0;
+  padding: 15px 25px;
+  margin-top: 17px;
+  border-radius: 3px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.primary:hover { background: #76564b; }
+.hero-art {
+  min-height: 400px;
+  border-radius: 48% 48% 8px 8px;
+  background: linear-gradient(145deg, #f0ddd0, #e8c7bc 55%, #d9b9a7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero-art::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 50%;
+}
+.gift {
+  position: relative;
+  text-align: center;
+  font-size: 105px;
+  filter: drop-shadow(0 18px 12px #936c5b35);
+}
+.gift-caption {
+  position: absolute;
+  bottom: 26px;
+  background: rgba(255,255,255,.83);
+  padding: 12px 20px;
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+.benefits {
+  background: white;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 35px;
+  padding: 24px;
+  font-size: 12px;
+  color: #65544c;
+}
+.benefits span { display: flex; align-items: center; gap: 8px; }
+section { scroll-margin-top: 90px; }
+.products-section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 75px 24px;
+}
+.section-head { text-align: center; margin-bottom: 30px; }
+.section-head h2 {
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 39px;
+  margin: 12px 0;
+}
+.section-head p { color: var(--muted); font-size: 13px; }
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 28px 0;
+}
+.filter {
+  border: 1px solid #dfd3c8;
+  background: transparent;
+  border-radius: 25px;
+  padding: 10px 17px;
+  color: var(--brown);
+  font-size: 12px;
+}
+.filter.active, .filter:hover {
+  background: var(--brown);
+  color: white;
+}
+.search-wrap { max-width: 400px; margin: 0 auto 30px; }
+.search-wrap input {
+  width: 100%;
+  padding: 13px 16px;
+  border: 1px solid #dfd3c8;
+  background: white;
+  border-radius: 4px;
+  outline-color: var(--pink);
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 20px;
+}
+.product-card {
+  background: white;
+  border: 1px solid #f0e8df;
+  padding-bottom: 18px;
+  min-width: 0;
+}
+.product-art {
+  min-height: 205px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: #f1e5da;
+  font-size: 75px;
+}
+.product-card:nth-child(4n+2) .product-art { background: #f3e2e3; }
+.product-card:nth-child(4n+3) .product-art { background: #e8e9dd; }
+.product-card:nth-child(4n+4) .product-art { background: #e8e0f0; }
+.tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: white;
+  padding: 6px 9px;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.product-info { padding: 15px 15px 0; }
+.product-info h3 { font-size: 14px; font-weight: normal; margin: 0 0 9px; }
+.product-info p { font-size: 11px; color: var(--muted); line-height: 1.6; min-height: 35px; }
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  margin-top: 15px;
+}
+.price { font-size: 14px; font-weight: bold; }
+.add {
+  border: 0;
+  background: var(--brown);
+  color: white;
+  padding: 10px;
+  font-size: 11px;
+}
+.add:hover { background: #956a5d; }
+.empty { grid-column: 1/-1; text-align: center; padding: 40px; color: var(--muted); }
+.story {
+  background: #eee1d7;
+  padding: 65px 24px;
+  text-align: center;
+}
+.story h2 {
+  font: normal 39px Georgia, serif;
+  margin: 16px 0;
+}
+.story p {
+  max-width: 600px;
+  margin: auto;
+  line-height: 1.9;
+  color: #6c5b52;
+  font-size: 14px;
+}
+.story a { margin-top: 10px; }
+footer {
+  background: #47352f;
+  color: #fff8f0;
+  padding: 45px 24px 22px;
+}
+.footer-inner {
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+footer p { font-size: 12px; line-height: 1.8; color: #d9c9bc; }
+footer a { text-decoration: underline; }
+.copyright {
+  text-align: center;
+  border-top: 1px solid #69534a;
+  margin-top: 30px;
+  padding-top: 20px;
+  font-size: 10px;
+  color: #d9c9bc;
+}
+.cart-panel {
+  display: none;
+  position: fixed;
+  z-index: 30;
+  inset: 0;
+  background: #0006;
+  justify-content: flex-end;
+}
+.cart-panel.open { display: flex; }
+.cart-content {
+  width: min(420px, 100%);
+  background: var(--cream);
+  padding: 25px;
+  overflow-y: auto;
+}
+.cart-head { display: flex; justify-content: space-between; align-items: center; }
+.cart-head h2 { font: normal 28px Georgia, serif; }
+.close {
+  border: 0;
+  background: transparent;
+  font-size: 27px;
+}
+.cart-line {
+  padding: 15px 0;
+  border-bottom: 1px solid #e2d6ca;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+}
+.cart-total { margin: 22px 0; font-weight: bold; }
+.note { font-size: 12px; color: var(--muted); line-height: 1.7; }
+@media(max-width:800px) {
+  .links { gap: 12px; }
+  .hero { grid-template-columns: 1fr; padding-top: 38px; gap: 28px; }
+  .hero-art { min-height: 300px; }
+  .grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+  .product-art { min-height: 160px; font-size: 58px; }
+  .section-head h2, .story h2 { font-size: 32px; }
+}
+@media(max-width:450px) {
+  .nav { padding: 14px; gap: 8px; }
+  .logo { font-size: 22px; }
+  .logo small { font-size: 8px; }
+  .links { display: none; }
+  .hero { padding-left: 18px; padding-right: 18px; }
+  .products-section { padding: 55px 12px; }
+  .product-info { padding: 12px 9px 0; }
+  .product-info h3 { font-size: 12px; }
+  .add { padding: 9px 7px; }
+}
+</style>
+</head>
+<body>
+<div class="topbar">HER HEDİYENİN BİR HİKÂYESİ VAR ✨</div>
+
+<header>
+  <nav class="nav">
+    <a class="logo" href="#">
+      MG
+      <small>CONCEPT STORE</small>
+    </a>
+    <div class="links">
+      <a href="#">Ana Sayfa</a>
+      <a href="#urunler">Ürünler</a>
+      <a href="#biz">Biz Kimiz?</a>
+    </div>
+    <button class="cart-button" onclick="toggleCart(true)">
+      ♡ Sepetim (<span id="cartCount">0</span>)
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Küçük mutlulukların adresi</div>
+      <h1>Bir hediye,<br><em>bin mutluluk.</em></h1>
+      <p>
+        Bazen küçücük bir hediye kocaman bir gülümseme yaratır.
+        Sevdiklerine özel, tatlı ve unutulmaz sürprizleri keşfet.
+      </p>
+      <a class="primary" href="#urunler">HEDİYELERİ KEŞFET ↗</a>
+    </div>
+    <div class="hero-art">
+      <div class="gift">🎁</div>
+      <div class="gift-caption">Every Gift Has a Story.</div>
+    </div>
+  </section>
+
+  <div class="benefits">
+    <span>♡ Özenle seçilen hediyeler</span>
+    <span>✧ Tatlı sürprizler</span>
+    <span>🎀 Sevdiklerine özel</span>
+  </div>
+
+  <section id="urunler" class="products-section">
+    <div class="section-head">
+      <div class="eyebrow">Senin için seçtik</div>
+      <h2>Minik mutluluklar</h2>
+      <p>Tarzını bul, favorini seç ve sürprizini keşfet.</p>
+    </div>
+
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="♡ Ürün ara..." aria-label="Ürün ara">
+    </div>
+
+    <div class="filters">
+      <button class="filter active" data-category="all">Tüm Ürünler</button>
+      <button class="filter" data-category="hediye">Hediye</button>
+      <button class="filter" data-category="aksesuar">Aksesuar</button>
+      <button class="filter" data-category="dekorasyon">Dekorasyon</button>
+    </div>
+
+    <div class="grid" id="productGrid"></div>
+  </section>
+
+  <section id="biz" class="story">
+    <div class="eyebrow">MG Concept Store</div>
+    <h2>Biz Kimiz?</h2>
+    <p>
+      Biz, hediyelerin yalnızca bir eşya değil, güzel bir anının
+      başlangıcı olduğuna inanıyoruz. MG Concept Store'da amacımız,
+      her özel ana eşlik edecek küçük mutlulukları seninle buluşturmak.
+      Çünkü her hediye bir hikâye anlatır.
+    </p>
+    <a class="primary" href="https://www.instagram.com/mg_shoptr/"
+       target="_blank" rel="noopener">BİZİ INSTAGRAM'DA TAKİP ET ↗</a>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="logo">MG <small>CONCEPT STORE</small></div>
+      <p>Every Gift Has a Story.</p>
+    </div>
+    <div>
+      <strong>Bize Ulaş</strong>
+      <p>Instagram: <a href="https://www.instagram.com/mg_shoptr/"
+         target="_blank" rel="noopener">@mg_shoptr</a></p>
+      <p>Soruların için Instagram üzerinden bize yazabilirsin.</p>
+    </div>
+  </div>
+  <div class="copyright">© <span id="year"></span> MG Concept Store. Tüm hakları saklıdır.</div>
+</footer>
+
+<div class="cart-panel" id="cartPanel" onclick="if(event.target===this)toggleCart(false)">
+  <div class="cart-content">
+    <div class="cart-head">
+      <h2>Alışveriş Sepetin</h2>
+      <button class="close" onclick="toggleCart(false)" aria-label="Sepeti kapat">×</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="cart-total">Toplam: <span id="cartTotal">0 TL</span></div>
+    <p class="note">
+      Bu başlangıç sitesindeki ürünler örnek amaçlıdır. Fiyatları ve
+      stok durumlarını gerçek ürünlerine göre güncelle. Bu demo henüz
+      ödeme almaz ve sipariş kaydetmez.
+    </p>
+    <a class="primary" style="display:block;text-align:center"
+       href="https://www.instagram.com/mg_shoptr/"
+       target="_blank" rel="noopener">INSTAGRAM'DAN İLETİŞİME GEÇ</a>
+  </div>
+</div>
+
+<script>
+const products = [
+  {id:1, name:"Müzikli Kar Küresi", category:"hediye", icon:"❄️", price:399, tag:"FAVORİ", description:"Masalsı anlara eşlik eden zarif bir hediye."},
+  {id:2, name:"Katlaç", category:"aksesuar", icon:"🎀", price:149, tag:"SEVİMLİ", description:"Günlük hayatına renk katan eğlenceli aksesuar."},
+  {id:3, name:"Dekoratif Hediye", category:"dekorasyon", icon:"🕯️", price:229, tag:"YENİ", description:"Yaşam alanlarına sıcaklık katan küçük dokunuş."},
+  {id:4, name:"Sürpriz Hediye Kutusu", category:"hediye", icon:"🎁", price:499, tag:"ÖZEL", description:"Sevdiklerine tatlı bir sürpriz hazırlamak için."},
+  {id:5, name:"Sevimli Anahtarlık", category:"aksesuar", icon:"🧸", price:99, tag:"TATLI", description:"Her gün yanında taşıyabileceğin sevimli bir detay."},
+  {id:6, name:"Mini Dekorasyon", category:"dekorasyon", icon:"🌷", price:179, tag:"ŞIK", description:"Masa ve rafların için zarif bir tamamlayıcı."},
+  {id:7, name:"Tatlı Sürpriz", category:"hediye", icon:"💝", price:279, tag:"HEDİYELİK", description:"Küçük bir jestle büyük bir gülümseme yarat."},
+  {id:8, name:"Sevimli Aksesuar", category:"aksesuar", icon:"💗", price:129, tag:"FAVORİ", description:"Tarzına sevimli bir dokunuş ekle."}
+];
+
+let selectedCategory = "all";
+let cart = [];
+
+const grid = document.getElementById("productGrid");
+const search = document.getElementById("search");
+
+function renderProducts() {
+  const query = search.value.trim().toLocaleLowerCase("tr");
+  const filtered = products.filter(p =>
+    (selectedCategory === "all" || p.category === selectedCategory) &&
+    (p.name.toLocaleLowerCase("tr").includes(query) ||
+     p.description.toLocaleLowerCase("tr").includes(query))
+  );
+
+  grid.innerHTML = "";
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty">Aradığın ürün bulunamadı. Başka bir kelime dene.</div>';
+    return;
+  }
+
+  filtered.forEach(p => {
+    const card = document.createElement("article");
+    card.className = "product-card";
+    card.innerHTML = `
+      <div class="product-art">
+        <span class="tag">${p.tag}</span>
+        <span aria-hidden="true">${p.icon}</span>
+      </div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p>${p.description}</p>
+        <div class="product-bottom">
+          <span class="price">${p.price.toLocaleString("tr-TR")} TL</span>
+          <button class="add" data-add="${p.id}">Sepete ekle +</button>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+grid.addEventListener("click", event => {
+  const button = event.target.closest("[data-add]");
+  if (!button) return;
+  const id = Number(button.dataset.add);
+  const existing = cart.find(item => item.id === id);
+  if (existing) existing.qty++;
+  else cart.push({id, qty:1});
+  renderCart();
+  document.getElementById("cartCount").textContent =
+    cart.reduce((sum, item) => sum + item.qty, 0);
+  button.textContent = "Eklendi ✓";
+  setTimeout(() => { button.textContent = "Sepete ekle +"; }, 900);
+});
+
+document.querySelectorAll(".filter").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedCategory = button.dataset.category;
+    document.querySelectorAll(".filter").forEach(b => b.classList.remove("active"));
+    button.classList.add("active");
+    renderProducts();
+  });
+});
+
+search.addEventListener("input", renderProducts);
+
+function renderCart() {
+  const container = document.getElementById("cartItems");
+  container.innerHTML = "";
+  let total = 0;
+
+  if (!cart.length) {
+    container.innerHTML = '<p class="note">Sepetin henüz boş. Favori ürünlerini keşfet!</p>';
+  }
+
+  cart.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    total += product.price * item.qty;
+    const line = document.createElement("div");
+    line.className = "cart-line";
+    line.innerHTML = `
+      <div><strong>${product.name}</strong><br>
+      ${product.price.toLocaleString("tr-TR")} TL × ${item.qty}</div>
+      <div>
+        <button class="filter" data-minus="${item.id}" aria-label="Bir adet azalt">−</button>
+        <button class="filter" data-plus="${item.id}" aria-label="Bir adet artır">+</button>
+        <button class="filter" data-remove="${item.id}">Sil</button>
+      </div>`;
+    container.appendChild(line);
+  });
+
+  document.getElementById("cartTotal").textContent =
+    total.toLocaleString("tr-TR") + " TL";
+}
+
+document.getElementById("cartItems").addEventListener("click", event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+  const id = Number(button.dataset.minus || button.dataset.plus || button.dataset.remove);
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+
+  if (button.dataset.remove) cart = cart.filter(i => i.id !== id);
+  else if (button.dataset.plus) item.qty++;
+  else {
+    item.qty--;
+    if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+  }
+
+  document.getElementById("cartCount").textContent =
+    cart.reduce((sum, i) => sum + i.qty, 0);
+  renderCart();
+});
+
+function toggleCart(open) {
+  document.getElementById("cartPanel").classList.toggle("open", open);
+  if (open) renderCart();
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
